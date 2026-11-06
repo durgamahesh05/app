@@ -1,0 +1,5 @@
+pymongo[srv]>=4.6,<4.19
+python-dotenv>=1.0,<2
+bcrypt>=4.1,<6
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1

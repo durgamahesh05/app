@@ -16,7 +16,7 @@ See [UI/README.md](UI/README.md) for mobile development details and [backend/REA
 ## Requirements
 
 - Node.js and npm
-- Python 3.11 for running the backend locally, or Docker Desktop
+- Python 3.10 for running the backend locally, or Docker Desktop
 - A MongoDB instance
 - For Android: Android Studio, JDK 17, Android SDK Platform 34, and a device or emulator
 - For iOS: macOS, Xcode, and CocoaPods

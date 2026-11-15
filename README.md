@@ -1,80 +1,132 @@
-# Merizo
+## Mobile Development Tools and Dependencies
 
-Merizo is a mobile app project with a React Native client and a FastAPI backend. The backend uses MongoDB for persistence and exposes authentication and user profile endpoints.
+### 1. React Native Dependencies
 
-## Project structure
+The mobile application uses Node.js, npm, React Native, and the libraries declared in `UI/package.json`.
 
-```text
-Merizo/
-├── backend/       FastAPI service
-├── UI/            React Native Android and iOS app
-└── docker-compose.yml
-```
-
-See [UI/README.md](UI/README.md) for mobile development details and [backend/README.md](backend/README.md) for backend setup and API notes.
-
-## Requirements
-
-- Node.js and npm
-- Python 3.10 for running the backend locally, or Docker Desktop
-- A MongoDB instance
-- For Android: Android Studio, JDK 17, Android SDK Platform 34, and a device or emulator
-- For iOS: macOS, Xcode, and CocoaPods
-
-## Configure the backend
-
-Create `backend/.env` from the example and set your MongoDB connection, database name, and a private JWT secret (at least 32 characters):
-
-```powershell
-Copy-Item backend/.env.example backend/.env
-```
-
-Keep this file private; it is excluded from Git. The backend README describes the API behavior and current authentication limitations.
-
-## Run with Docker
-
-With Docker Desktop running and `backend/.env` configured, run from the repository root:
-
-```bash
-docker compose up --build
-```
-
-The API is available at `http://localhost:8000`; interactive API documentation is at `http://localhost:8000/docs`. Stop the service with `docker compose down`.
-
-## Run locally
-
-Start the backend in one terminal (PowerShell):
-
-```powershell
-cd backend
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-Copy-Item .env.example .env # configure values in .env
-.\.venv\Scripts\python.exe -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-In another terminal, install and start the mobile app:
+Install JavaScript dependencies:
 
 ```bash
 cd UI
 npm install
-npm start
 ```
 
-Then use `npm run android` or `npm run ios` to launch the app on a configured device or simulator. Platform setup and API host configuration are described in [UI/README.md](UI/README.md).
+The project dependencies may include:
 
-## Available API endpoints
+- React and React Native
+- React Navigation for application navigation
+- React Native Screens and Safe Area Context
+- React Native Gesture Handler
+- Axios or Fetch API for backend communication
+- AsyncStorage for local data persistence
+- Additional UI and platform-specific libraries used by the application
 
-- `POST /api/auth/register` — create an account
-- `POST /api/auth/login` — sign in and receive a bearer token
-- `GET /api/users/profile` — retrieve the authenticated user's profile
-- `POST /api/users/update` — update the user's profile
+The actual dependencies and versions are maintained in `UI/package.json` and `UI/package-lock.json`.
 
-## Mobile checks
+### 2. Android Development Dependencies
 
-From `UI/`, run the available TypeScript and lint checks:
+Android development requires the following tools:
+
+| Component | Requirement |
+|---|---|
+| Android Studio | Latest compatible version |
+| JDK | Java Development Kit 17 |
+| Android SDK | Platform 34 |
+| Android SDK Build Tools | Version compatible with the project |
+| Android SDK Command-line Tools | Installed |
+| Android Emulator | Optional, for virtual device testing |
+| Gradle | Version specified in Gradle Wrapper |
+| Android Gradle Plugin | Version specified in project configuration |
+| Kotlin | Version specified in project configuration |
+
+**Gradle configuration**
+
+Gradle is used to build and manage Android application dependencies.
+
+The Gradle Wrapper configuration is maintained in:
+
+```text
+UI/android/gradle/wrapper/gradle-wrapper.properties
+```
+
+The Android Gradle Plugin and Kotlin versions are configured in the project's Android Gradle build files.
+
+Make sure the installed JDK version is compatible with the Gradle version used by the project.
+
+Verify Java installation:
 
 ```bash
-npm run tsc
-npm run lint
+java -version
 ```
+
+Verify Gradle:
+
+```bash
+cd UI/android
+gradlew.bat --version
+```
+
+### 3. iOS Development Dependencies
+
+iOS development requires macOS and the following tools:
+
+| Component | Requirement |
+|---|---|
+| macOS | Required |
+| Xcode | Compatible version |
+| Xcode Command Line Tools | Installed |
+| JDK | Version required by the React Native toolchain |
+| CocoaPods | Required for native iOS dependencies |
+| iOS Simulator | Available through Xcode |
+
+**Install iOS dependencies**
+
+From the UI directory:
+
+```bash
+cd UI/ios
+pod install
+```
+
+CocoaPods manages native iOS libraries declared through the project's Podfile and dependencies.
+
+The main iOS dependency configuration is maintained in:
+
+```text
+UI/ios/Podfile
+```
+
+Open the generated `.xcworkspace` file in Xcode when working with the iOS application.
+
+### 4. Platform Build Commands
+
+**Android**
+
+```bash
+cd UI
+npm install
+npm run android
+```
+
+**iOS**
+
+```bash
+cd UI
+npm install
+cd ios
+pod install
+cd ..
+npm run ios
+```
+
+Note: iOS builds require macOS with Xcode installed.
+
+### 5. Dependency Management
+
+- JavaScript dependencies are managed through npm.
+- Android dependencies are managed through Gradle.
+- iOS native dependencies are managed through CocoaPods.
+- Android SDK and build tools are managed through Android Studio.
+- JDK compatibility depends on the project's Gradle and Android Gradle Plugin versions.
+
+Keep dependency versions consistent with the project configuration files when setting up a development environment.

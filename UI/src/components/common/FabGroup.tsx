@@ -6,7 +6,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import AddExpenseSheet from '../expense/AddExpenseSheet';
 import SplitReceiptSheet from '../receipt/SplitReceiptSheet';
 
-export default function FabGroup() {
+export default function FabGroup({ groupId }: { groupId?: string }) {
   const { theme: t } = useTheme();
   const { t: tr } = useLanguage();
   const [sheet, setSheet] = useState<'expense' | 'receipt' | null>(null);
@@ -20,7 +20,7 @@ export default function FabGroup() {
           <FileText size={18} color={t.onAccent} /><Text style={[s.txt, { color: t.onAccent }]}>{tr('addExpense')}</Text>
         </Pressable>
       </View>
-      <AddExpenseSheet visible={sheet === 'expense'} onClose={() => setSheet(null)} />
+      <AddExpenseSheet visible={sheet === 'expense'} onClose={() => setSheet(null)} groupId={groupId} />
       <SplitReceiptSheet visible={sheet === 'receipt'} onClose={() => setSheet(null)} />
     </>
   );

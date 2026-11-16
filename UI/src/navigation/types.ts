@@ -5,7 +5,7 @@ export type AuthStackParamList = {
 export type RootStackParamList = {
   Main: undefined; Auth: undefined; ScanCode: undefined;
   CreateGroup: undefined; JoinGroup: undefined; GroupDetails: { id: string };
-  ExpenseDetails: { id: string }; SplitExpense: undefined;
+  ExpenseDetails: { id: string }; SplitExpense: { id: string };
   ReceiptDetails: { uri: string }; ScanReceipt: undefined;
   EditProfile: undefined; Settings: undefined; Language: undefined; Insights: undefined;
 };

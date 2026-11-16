@@ -21,7 +21,7 @@ export default function GroupsScreen() {
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <Header showAddFriend onAddFriend={() => nav.navigate('JoinGroup')} />
       {visible.length === 0 ? (
-        <EmptyState kind="groups" settledCount={groups.filter(g => g.settled).length || 1} onShowSettled={() => setShowSettled(true)} />
+        <EmptyState kind="groups" settledCount={groups.filter(g => g.settled).length} onShowSettled={() => setShowSettled(true)} />
       ) : (
         <FlatList data={visible} keyExtractor={g => g.id} contentContainerStyle={{ padding: 20, paddingBottom: 140 }}
           ListHeaderComponent={<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16 }}>

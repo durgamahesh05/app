@@ -5,5 +5,6 @@ export const groupService = {
   list: () => api<Group[]>(E.groups.list),
   create: (name: string) => api<Group>(E.groups.create, { body: { name } }),
   join: (code: string) => api<Group>(E.groups.join, { body: { code } }),
-  members: (id: string) => api(E.groups.members + `?group_id=${id}`),
+  members: (id: string) => api<{ id: string; name: string; email: string }[]>(E.groups.members + `?group_id=${encodeURIComponent(id)}`),
+  friends: () => api<import('../types/group').Friend[]>(E.friends.list),
 };

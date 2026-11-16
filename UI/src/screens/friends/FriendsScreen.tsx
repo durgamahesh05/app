@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/common/Header';
 import EmptyState from '../../components/common/EmptyState';
 import FabGroup from '../../components/common/FabGroup';
 import { Friend } from '../../types/group';
 import { CURRENCY } from '../../constants/config';
+import { groupService } from '../../services/groupService';
 
 export default function FriendsScreen() {
   const { theme: t } = useTheme();
-  const [friends] = useState<Friend[]>([]);
+  const [friends, setFriends] = useState<Friend[]>([]);
+  useFocusEffect(useCallback(() => { groupService.friends().then(setFriends).catch(() => setFriends([])); }, []));
   return (
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <Header showAddFriend />

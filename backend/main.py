@@ -171,3 +171,18 @@ def update_profile(request: ProfileUpdate, user: CurrentUser) -> dict[str, Any]:
     finally:
         client.close()
     return {"id": user["id"], "name": name, "email": user["email"]}
+
+
+# Imported after auth declarations because feature routers share the authenticated
+# CurrentUser dependency from this module.
+from routers.expenses import router as expenses_router
+from routers.friends import router as friends_router
+from routers.groups import router as groups_router
+from routers.insights import router as insights_router
+from routers.settlements import router as settlements_router
+
+app.include_router(groups_router)
+app.include_router(expenses_router)
+app.include_router(friends_router)
+app.include_router(settlements_router)
+app.include_router(insights_router)

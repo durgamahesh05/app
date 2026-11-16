@@ -9,22 +9,24 @@ import { useLanguage } from '../../context/LanguageContext';
 import { expenseService } from '../../services/expenseService';
 import { CURRENCY } from '../../constants/config';
 
-export default function AddExpenseSheet({ visible, onClose }: { visible: boolean; onClose: () => void }) {
+export default function AddExpenseSheet({ visible, onClose, groupId }: { visible: boolean; onClose: () => void; groupId?: string }) {
   const { theme: t } = useTheme();
   const { t: tr } = useLanguage();
   const [desc, setDesc] = useState('');
   const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('');
   const [saving, setSaving] = useState(false);
 
   const save = async () => {
     setSaving(true);
-    try { await expenseService.create({ description: desc, amount: Number(amount) }); setDesc(''); setAmount(''); onClose(); }
+    try { await expenseService.create({ description: desc, amount: Number(amount), category: category.trim() || 'Other', groupId }); setDesc(''); setAmount(''); setCategory(''); onClose(); }
     catch {} finally { setSaving(false); }
   };
 
   return (
     <BottomSheet visible={visible} title="Add an expense" onClose={onClose}>
       <Input label="Description" placeholder="What was this for?" value={desc} onChangeText={setDesc} autoFocus />
+      <Input label="Category" placeholder="Food, travel, rent…" value={category} onChangeText={setCategory} />
       <Text style={{ color: t.muted, fontSize: 12, fontWeight: '600', marginBottom: 6 }}>Amount</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: t.cardAlt, borderRadius: 16, paddingHorizontal: 14, borderWidth: 1.5, borderColor: t.border, marginBottom: 14 }}>
         <Text style={{ color: t.text, fontSize: 22, marginRight: 8 }}>{CURRENCY}</Text>

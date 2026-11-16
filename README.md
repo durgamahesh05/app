@@ -1,11 +1,18 @@
 ## Mobile Development Tools and Dependencies
 
+<<<<<<< HEAD
 This repository contains a React Native 0.74.5 application (`UI/`) and a FastAPI/MongoDB API (`backend/`). The supported Android build requires Node.js and JDK 17; iOS builds require macOS and Xcode. Detailed mobile setup and the per-user JDK path configuration are in [UI/README.md](UI/README.md).
 
 ### 1. React Native Dependencies
 
 Merizo is a React Native group expense app backed by a FastAPI API and MongoDB. The mobile application uses Node.js, npm, React Native, and the libraries declared in `UI/package.json`.
 
+=======
+### 1. React Native Dependencies
+
+The mobile application uses Node.js, npm, React Native, and the libraries declared in `UI/package.json`.
+
+>>>>>>> 096fad3905473ff8b29fae28f83b5cb77f5921f2
 Install JavaScript dependencies:
 
 ```bash
@@ -13,6 +20,7 @@ cd UI
 npm install
 ```
 
+<<<<<<< HEAD
 The exact dependencies and versions are maintained in `UI/package.json` and `UI/package-lock.json`. The current app uses React Native 0.74.5, React 18.2, TypeScript, React Navigation, AsyncStorage, VisionCamera, and Lucide icons. API calls use the built-in Fetch API through a shared client.
 
 ### 2. Android Development Dependencies
@@ -33,6 +41,36 @@ Android development requires the following tools:
 | Android Gradle Plugin | Version specified in project configuration |
 | Kotlin | Version specified in project configuration |
 
+=======
+The project dependencies may include:
+
+- React and React Native
+- React Navigation for application navigation
+- React Native Screens and Safe Area Context
+- React Native Gesture Handler
+- Axios or Fetch API for backend communication
+- AsyncStorage for local data persistence
+- Additional UI and platform-specific libraries used by the application
+
+The actual dependencies and versions are maintained in `UI/package.json` and `UI/package-lock.json`.
+
+### 2. Android Development Dependencies
+
+Android development requires the following tools:
+
+| Component | Requirement |
+|---|---|
+| Android Studio | Latest compatible version |
+| JDK | Java Development Kit 17 |
+| Android SDK | Platform 34 |
+| Android SDK Build Tools | Version compatible with the project |
+| Android SDK Command-line Tools | Installed |
+| Android Emulator | Optional, for virtual device testing |
+| Gradle | Version specified in Gradle Wrapper |
+| Android Gradle Plugin | Version specified in project configuration |
+| Kotlin | Version specified in project configuration |
+
+>>>>>>> 096fad3905473ff8b29fae28f83b5cb77f5921f2
 **Gradle configuration**
 
 Gradle is used to build and manage Android application dependencies.
@@ -124,9 +162,12 @@ Note: iOS builds require macOS with Xcode installed.
 - JDK compatibility depends on the project's Gradle and Android Gradle Plugin versions.
 
 Keep dependency versions consistent with the project configuration files when setting up a development environment.
+<<<<<<< HEAD
 
 ### Backend API status
 
 Implemented routes include auth/profile, groups (`/api/groups`), expenses (`/api/expenses`), settlements (`/api/settlements`), friends (`/api/friends/list`), and monthly insights (`/api/insights`). See [backend/README.md](backend/README.md) for setup and the known limits: email OTP/password reset, receipt extraction, AI chat, and notifications still need provider integrations.
 
 The backend targets Python 3.10. Create its Conda environment from `backend/environment.yml`, or activate an existing Python 3.10 Conda environment. The Docker image also uses Python 3.10.
+=======
+>>>>>>> 096fad3905473ff8b29fae28f83b5cb77f5921f2
